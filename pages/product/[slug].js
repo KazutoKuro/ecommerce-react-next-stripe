@@ -7,12 +7,12 @@ import {
 } from "react-icons/ai";
 import { client, urlFor } from "../../lib/client";
 import { Product } from "../../components";
-// import { useStateContext } from "../../context/StateContext";
+import { useStateContext } from "../../context/StateContext";
 
 const ProductDetails = ({ product, products }) => {
   const { image, name, details, price } = product;
   const [index, setIndex] = useState(0);
-  //   const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
+  const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
 
   //   const handleBuyNow = () => {
   //     onAdd(product, qty);
@@ -62,17 +62,11 @@ const ProductDetails = ({ product, products }) => {
           <div className="quantity">
             <h3>Quantity:</h3>
             <p className="quantity-desc">
-              <span
-                className="minus"
-                //    onClick={decQty}
-              >
+              <span className="minus" onClick={decQty}>
                 <AiOutlineMinus />
               </span>
-              <span className="num">1{/* {qty} */}</span>
-              <span
-                className="plus"
-                //   onClick={incQty}
-              >
+              <span className="num">{qty}</span>
+              <span className="plus" onClick={incQty}>
                 <AiOutlinePlus />
               </span>
             </p>
@@ -82,7 +76,7 @@ const ProductDetails = ({ product, products }) => {
             <button
               type="button"
               className="add-to-cart"
-              //   onClick={() => onAdd(product, qty)}
+              onClick={() => onAdd(product, qty)}
             >
               Add to Cart
             </button>
@@ -96,7 +90,7 @@ const ProductDetails = ({ product, products }) => {
           </div>
         </div>
       </div>
-      
+
       <div className="maylike-products-wrapper">
         <h2>You may also like</h2>
         <div className="marquee">
